@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hs.istudy.mapper.StudyMapper">
+	<insert id="addStudy">
+	insert into study_tb(user_no, study_name, study_start, study_end, study_subject, study_place)
+	values(#{user_no}, #{study_name}, #{study_start}, #{study_end}, #{study_subject}, #{study_place});
+	</insert>
+	<select id="getStudyList">
+	select * from study_tb
+	</select>
+	<select id="getStudy">
+	select * from study_tb where study_no = #{studyNo}
+	</select>
+	
+</mapper>
