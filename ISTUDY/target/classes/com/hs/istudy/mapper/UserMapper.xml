@@ -8,8 +8,8 @@
 		insert into user_tb(user_id, user_pw, user_name, user_phone, user_interest, user_job) 
 		values(#{userId}, #{userPw}, #{userName}, #{userPhone}, #{userInterest}, #{userJob});
 	</insert>
-	<select id="getUser" resultType ="com.hs.istudy.dto.User" parameterType="com.hs.istudy.dto.User">
-		select * from user_tb where user_id = #{user_id} and user_pw = #{user_pw}
+	<select id="getUser" resultType ="com.hs.istudy.dto.User">
+		select * from user_tb where user_id = #{userId} and user_pw = #{userPw}
 	</select>
 	 <select id="getUserName" parameterType="String" resultType="string">
      	select user_name FROM user_tb WHERE user_id = #{user_id}

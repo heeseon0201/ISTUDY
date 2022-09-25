@@ -7,7 +7,7 @@
 	insert into study_tb(user_no, study_name, study_start, study_end, study_subject, study_place)
 	values(#{user_no}, #{study_name}, #{study_start}, #{study_end}, #{study_subject}, #{study_place});
 	</insert>
-	<select id="getStudyList">
+	<select id="getStudyList" resultType="com.hs.istudy.dto.Study">
 	select * from study_tb
 	</select>
 	<select id="getStudy">

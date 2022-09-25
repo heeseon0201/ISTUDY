@@ -1,0 +1,462 @@
+@charset "utf-8";
+/*타이틀의 폰트 변동*/
+@import
+	url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@800&display=swap');
+/*lecture, course의 폰트 변동*/
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet&display=swap');/* font-family: 'Hahmlet', serif; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+.background{
+	background: url("https://images.unsplash.com/photo-1512580770426-cbed71c40e94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1507&q=80");
+	background-size: 100% ;
+	height: 100vh;
+}
+header{position:fixed; width: 100%; height: 60px;}
+
+:root{
+	--text-color: #f0f4f5;
+	--background-color: burlywood;
+	--accent-color: black;
+}
+
+*{margin: 0; padding: 0;}
+
+.nav > a {
+	color: #f0f4f5;
+}
+
+a {
+text-decoration: none;
+color: var(--text-color);
+ }
+
+.navbar{
+	font-family: 'Noto Sans KR', sans-serif;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 12px;
+	width: 100%;
+	height: 50px;
+    background-color: rgba( 255, 255, 255, 0.5 );
+}
+
+.navbar_logo {
+	font-size: 25px;
+	color: var(--text-color);
+	padding-left: 30px;
+}
+
+.navbar_logo i {
+	color: var(--accent-color);
+}
+
+.navbar_menu {
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+}
+
+.navbar_menu li {
+	padding: 8px 45px;
+	font-size: 25px;
+	color: var(--text-color);
+}
+
+.navbar_menu li:hover{
+	background-color:#6E6E6E;
+	border-radius: 4px;
+}
+
+.navbar_account{
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+}
+
+.navbar_account li{
+	padding: 8px 20px;
+	color: var(--text-color);
+	font-size: 25px;
+}
+
+.navbar_toggleBtn{
+	display: none;
+	position: absolute;
+	right: 32px;
+	font-size: 24px;
+	color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+	.navbar {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 8px 24px;
+		height: 60%;
+	}
+
+	.navbar_menu {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		width:100%;
+	}
+
+	.navbar_menu li{
+		width: 100%;
+		text-align: center;
+	}
+
+	.navbar_account{
+		display: none;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.navbar_toggleBtn{
+		display: block;
+	}
+
+	.navbar_menu.active,
+	.navbar_account.active {
+		display: flex;
+	}
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 5rem;
+	text-decoration-line: none;
+	/*-webkit-의 경우 브라우저가 크롬일 때를 고려*/
+	-webkit-background-clip: text;
+	
+	font-weight: bold;
+}
+
+body {
+	background: #EEE;
+	font-family: 'Hahmlet', serif;
+}
+
+/*
+div {
+	text-align: center;
+}
+*/
+/* 검색창 시작 */
+input:-ms-input-placeholder {	color: #a8a8a8;}
+input::-webkit-input-placeholder {	color: #a8a8a8;}
+input::-moz-placeholder {	color: #a8a8a8}
+
+.searchOut {
+	text-align: center;
+	margin: 15px;
+}
+
+.search {
+	height: 40px;
+	width: 400px;
+	border: 1px solid #495057;
+	background: #e9ecef;
+	display: inline-block;
+}
+
+.searchInput {
+	font-size: 16px;
+	width: 325px;
+	padding: 10px;
+	border: 0px;
+	outline: none;
+	float: left;
+	background: #e9ecef;
+}
+
+.searchBtn {
+	width: 50px;
+	height: 100%;
+	border: 0px;
+	background: #495057;
+	outline: none;
+	float: right;
+	color: #e9ecef;
+}
+
+/* 검색창 끝 */
+
+/* 스터디만들기 */
+
+        .create{
+            margin-left:10px;
+            height:40px;
+            width:100px;
+            border: 1px solid;
+            display:inline-block;
+        }
+        .createBtn{
+            width:100px;
+            height:100%;
+            border:0px;
+            background:#495057;
+            outline:none;
+            float:right;
+            color:#e9ecef;
+        }
+/* 스터디만들기 끝 */
+
+/* 제목부분 */
+.link{
+	font-family:"courgette", cursive;
+	padding-top: 100px;
+}
+
+/* 본문 표 */
+table{
+	text-align:center;
+}
+.article {
+	width: 80%;
+	margin: auto;
+	border-collapse: collapse;
+	table-layout:fixed;
+	z-index:0;
+}
+
+.article tr td {
+
+	border-bottom: 1px solid black;
+	color: #495057;
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+	padding: 15px; /* 테두리와 내용사이 간격 */
+	font-size:1rem;
+	
+	text-overflow:ellipsis; /* 글자가 넘어갈 경우 생략부호, 적용안되면 display 속성이 block 또는 inline-block에서만 동작하니 확인 */
+	overflow:hidden; /* 글자 넘어가는것 숨김처리 */
+	/*white-space:nowrap;*/ /* 공백문자 줄바꿈 하지 않고 한줄로 */
+
+}
+.cat{
+	width:5%;
+	line-height:1.2;
+	height:3.6rem;
+}
+.name{
+	width:30%;
+	line-height:1.2;
+	height:3.6rem;
+}
+td.name>a{
+	text-decoration-line:none;
+	color:#495057;
+	
+}
+
+.count{
+	width:10%;
+	line-height:1.2;
+	height:3.6rem;
+	
+}
+
+.teach{
+	width:10%;
+	line-height:1.2;
+	height:3.6rem;
+}
+.price{
+	width:10%;
+	line-height:1.2;
+	height:3.6rem;
+}
+.point{
+	width:5%;
+	line-height:1.2;
+	height:3.6rem;
+}
+.review{
+	width:5%;
+	white-space:normal;
+	line-height:1.2;
+	height:3.6rem;
+}
+
+th {
+	height: 20px;
+	border-top: 1px solid black;
+	color: #fff;
+	background-color: #343a40;
+	border-color: #454d55;
+	padding: 15px; /* 테두리와 내용사이 간격 */
+}
+/* 툴팁 띄우기 */
+.help-tip {
+
+    text-align: center;
+    background-color: #BCDBEA;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 26px;
+    cursor: default;
+}
+.help-tip:before {
+    content: '?';
+    font-weight: bold;
+    color: #fff;
+}
+.help-tip:hover p {
+    display: block;
+    transform-origin: 100% 0%;
+
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+}
+.help-tip p {
+    display: none;
+    text-align: left;
+    background-color: #1E2021;
+    padding: 20px;
+    width: 300px;
+    
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1.4;
+    z-index:1;
+}
+.help-tip p:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #1E2021;
+    right: 10px;
+    top: -12px;
+}
+.help-tip p:after {
+    width: 100%;
+    height: 40px;
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 100%;}
+}
+
+/* 위치 지정하기 */
+.boardlist{
+	z-index:-1;
+}
+
+
+.foot{
+	height:100px;
+}
+/*리뷰테이블의 th*/
+.reviewtable{
+   matgin:auto;
+   border-bottom: 1px solid black;
+   color: #fff;
+   background-color: #343a40;
+   border-color: #454d55;
+   padding: 15px; /* 테두리와 내용사이 간격 */
+   font-size:1rem;
+   /* white-space:normal; */
+   /* line-height:1.2;
+   border-collapse: collapse;
+   table-layout:fixed; */
+}
+/*후기 더보기*/
+.review >a{
+	text-decoration-line:none;
+	color:#454d55;
+	font-weight:bold;
+}
+
+/* 강의 목록 밑 페이지 */
+.pages{
+	text-align:center;
+
+}
+.pages a{
+	text-decoration-line:none;
+	color: white;
+	font-weight:bold;
+}
+
+/*studycreat.jsp 폼 양식 시작*/
+        .tableBasic{
+            margin: auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .tableTd, .tableTh{
+            border-top: 1px solid #495057;
+            border-bottom: 1px solid #495057;
+        }
+        .tableTh{
+            background: #495057;
+            color: #e9ecef;
+            padding: 10px;
+        }
+        .ta
+        .tableTd{
+            background-color: #495057;
+            color:black;
+        }
+        .tableTd input{
+            border:0px;
+            padding: 10px;
+            outline: none;
+            background: #EEE;
+        }
+        .mkBtn{
+            margin-top:10px;
+            width:75px;
+            height:30px;
+            border:0px;
+            background:#495057;
+            outline:none;
+            color:#e9ecef;
+        }
+		td.select > a{
+            color: #495057;
+        }
+/*studycreat.jsp 폼 양식 끝*/
+
+#goback{
+	display: block;
+	margin: 0px auto;
+}
+.gobackBtn{
+	display: block;
+	margin: 0px auto;
+    width:100px;
+    height:100%;
+    border:0px;
+    background:#495057;
+    outline:none;
+    color:#e9ecef;
+        
+}

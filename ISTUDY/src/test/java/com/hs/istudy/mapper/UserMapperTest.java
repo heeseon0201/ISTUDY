@@ -21,8 +21,8 @@ public class UserMapperTest {
 	@Test
 	public void testAddUser() {
 		User user = new User();
-		String id = "bbb";
-		String pw = "bbb";
+		String id = "ccc";
+		String pw = "ccc";
 		user.setUserId(id);
 		user.setUserPw(pw);
 		user.setUserName("ABC");

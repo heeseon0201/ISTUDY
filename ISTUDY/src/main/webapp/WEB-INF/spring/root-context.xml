@@ -23,7 +23,7 @@
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
         <property name="dataSource" ref="dataSource" />
         <property value="classpath:mybatis-config.xml" name="configLocation" />
-        <property value="com/hs/istudy/mapper/**/*Mapper.xml" name="mapperLocations" />
+        <property value="classpath:com/hs/istudy/mapper/*Mapper.xml" name="mapperLocations" />
     </bean>
 
     <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession" destroy-method="clearCache">
@@ -31,5 +31,6 @@
     </bean>
    <!-- BoardMapper들을 Spring Conatainer에 객체를 생성하는 부분(Scan) -->
    <mybatis-spring:scan base-package="com.hs.istudy.mapper"/>
+   <context:component-scan base-package="com.hs.istudy.service"/>
    
 </beans>
