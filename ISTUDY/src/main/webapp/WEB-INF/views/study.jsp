@@ -17,23 +17,30 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script>
 	$(document).ready(()=>{
+		let page = 1;
 		getStudy();
     });   
 	function getStudy(){
 		$.ajax({
-			url:window.origin+"/api/study",
-			type:'get',
-			dataType:"json",
-			success: setTable,
-			error: function(){console.error("getStudy error");}
+			url:window.origin+"/api/study"
+			,type:'post'
+			,data:{
+				'page': page,
+				'searchWord': searchWord
+				}
+			,dataType:"json"
+			,success: setTable
+			,error: function(){console.error("getStudy error");}
 		})
 	}
 	function setTable(data){
+		
 		//여기에서부터 테이블 정보를 넣기 처리
-		var table = "<td>";
+		let table = "<td>";
     	table += "</td>"
   		$(".boardList").append(table);
 	}
+	
 	</script>
     <link rel="stylesheet" href="/resources/css/table.css">
 </head>
