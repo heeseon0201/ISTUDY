@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Study {
 
 	private int studyNo;
-	private int userNo;
+	private String userId;
 	private String studyName;
 	private Date studyStart;
 	private Date studyEnd;

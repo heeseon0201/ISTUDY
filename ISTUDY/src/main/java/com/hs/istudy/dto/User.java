@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 public class User {
 
-	private int userNo; //사용자no
 	private String userId; //사용자id
 	private String userName; //성함
 	private String userPhone; //전화번호
