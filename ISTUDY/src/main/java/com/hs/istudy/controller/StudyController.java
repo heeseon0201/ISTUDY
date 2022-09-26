@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,10 +28,17 @@ public class StudyController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/study")
-	public List<Study> getStudyList() {
-		List<Study> studyList = service.getStudyList();
-		return studyList;
+	@PostMapping("/study")
+	public List<Study> getStudyList(@RequestParam("page") int page,
+									@RequestParam("searchWord") String searchWord) {
+		if(searchWord == null) {
+			List<Study> studyList = service.getStudyList(page - 1);
+			return studyList;
+		}else {
+			List<Study> studyList = service.getStudyList(page - 1);
+			return studyList;
+		}
+		
 		
 	}
 }

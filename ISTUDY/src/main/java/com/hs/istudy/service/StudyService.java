@@ -8,5 +8,5 @@ import com.hs.istudy.dto.Study;
 
 public interface StudyService {
 
-	public List<Study> getStudyList();
+	public List<Study> getStudyList(int page);
 }

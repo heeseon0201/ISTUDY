@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hs.istudy.mapper.StudyMapper">
 	<insert id="addStudy">
-	insert into study_tb(user_no, study_name, study_start, study_end, study_subject, study_place)
-	values(#{user_no}, #{study_name}, #{study_start}, #{study_end}, #{study_subject}, #{study_place});
+	insert into study_tb(user_id, study_name, study_start, study_end, study_subject, study_place)
+	values(#{userId}, #{study_name}, #{study_start}, #{study_end}, #{study_subject}, #{study_place});
 	</insert>
-	<select id="getStudyList" resultType="com.hs.istudy.dto.Study">
-	select * from study_tb
+	<select id="getStudyList" parameterType="int" resultType="com.hs.istudy.dto.Study">
+	select * from study_tb order by study_no limit #{page}, 10
 	</select>
 	<select id="getStudy">
 	select * from study_tb where study_no = #{studyNo}

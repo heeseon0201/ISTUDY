@@ -69,4 +69,8 @@ public class UserController {
 	public String study() {
 		return "study";
 	}
+	@RequestMapping("/lecture.do")
+	public String lecture() {
+		return "lecture";
+	}
 }

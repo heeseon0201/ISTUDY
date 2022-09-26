@@ -17,8 +17,8 @@ public class LectureServiceImpl implements LectureService{
 		this.mapper = mapper;
 	}
 	@Override
-	public List<Lecture> getLectureList() {
-		List<Lecture> lectureList = mapper.getLectureList();
+	public List<Lecture> getLectureList(int page, String searchWord) {
+		List<Lecture> lectureList = mapper.getLectureList(page, searchWord);
 		return lectureList;
 	}
 

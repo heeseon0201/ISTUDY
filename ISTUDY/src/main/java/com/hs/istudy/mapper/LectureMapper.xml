@@ -4,6 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hs.istudy.mapper.LectureMapper">
 	<select id="getLectureList" resultType="com.hs.istudy.dto.Lecture">
-		select * from lecture_tb
+		select * 
+		from lecture_tb 
+		<if test="searchWord != null">
+			where lecture_name like CONCAT('%', #{searchWord}, '%')
+		</if>
+		order by lecture_no 
+		limit #{page}, 10
 	</select>
 </mapper>

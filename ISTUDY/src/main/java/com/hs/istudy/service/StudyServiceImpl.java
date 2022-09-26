@@ -19,8 +19,8 @@ public class StudyServiceImpl implements StudyService{
 	}
 	
 	@Override
-	public List<Study> getStudyList() {
-		List<Study> studyList = mapper.getStudyList();
+	public List<Study> getStudyList(int page) {
+		List<Study> studyList = mapper.getStudyList(page);
 		return studyList;
 	}
 
