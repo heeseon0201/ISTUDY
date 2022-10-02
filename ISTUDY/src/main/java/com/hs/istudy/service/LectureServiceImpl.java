@@ -21,6 +21,11 @@ public class LectureServiceImpl implements LectureService{
 		List<Lecture> lectureList = mapper.getLectureList(page, searchWord);
 		return lectureList;
 	}
+	@Override
+	public int getLectureCount(String searchWord) {
+		int lectureCount = mapper.getLectureCount(searchWord);
+		return lectureCount;
+	}
 
 	
 }
