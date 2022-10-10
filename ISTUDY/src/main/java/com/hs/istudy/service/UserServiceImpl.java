@@ -10,6 +10,7 @@ import com.hs.istudy.mapper.UserMapper;
 public class UserServiceImpl implements UserService{
 	
 	private UserMapper mapper;
+	
 	@Autowired
 	public UserServiceImpl(UserMapper mapper) {
 		this.mapper = mapper;

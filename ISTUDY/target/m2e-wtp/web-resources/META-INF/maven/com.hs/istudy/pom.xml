@@ -167,7 +167,7 @@
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-test</artifactId>
-    <version>5.2.22.RELEASE</version>
+    <version>${org.springframework-version}</version>
     <scope>test</scope>
 </dependency>
 	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -176,6 +176,13 @@
     <artifactId>gson</artifactId>
     <version>2.9.1</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
+<dependency>
+    <groupId>com.squareup.okhttp</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>2.7.5</version>
+</dependency>
+
 	
 	</dependencies>
     <build>

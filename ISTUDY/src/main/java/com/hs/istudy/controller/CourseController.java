@@ -14,7 +14,9 @@ import com.hs.istudy.service.CourseService;
 
 @Controller
 public class CourseController {
+	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	private CourseService service;
 	
 	@Autowired

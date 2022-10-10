@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hs.istudy.dto.User;
 import com.hs.istudy.service.UserService;
 
-
-
 @Controller
 public class UserController {
 	
@@ -72,5 +70,9 @@ public class UserController {
 	@RequestMapping("/lecture.do")
 	public String lecture() {
 		return "lecture";
+	}
+	@RequestMapping("/search.do")
+	public String search() {
+		return "searchpage";
 	}
 }
