@@ -25,23 +25,20 @@
 			success: (data) => {
 				$(".article").empty();
 				table = null;
-				table += "<tr>";
-				table += "<th>제목</th>";
-				table += "<th>상세정보</th>";
+				table += "<tr>"
+				table += "<th>검색결과</th>";
 				table += "</tr>";
 				$.each(data, function(index, value){
 					table += "<tr class=\"boardList\">";
-		    		table += "<a href=\""+value.link+"\"><td class=\"cat\">" + value.title + "</td></a>";
-		    		table += "<td class=\"cat\">" + value.description + "</td>";
-		    		table += ""
+		    		table += "<td class=\"cat\"><a style='color:black;' href='"+value.link+"'>" + value.title + "</a><br><br>";
+		    		table += value.description + "</td>";
+		    		table += "</tr>"
 				});
 				$(".article").append(table);
 			}
 		})
 	}
-	function showTable(){
-		
-	}
+
 	</script>
     <link rel="stylesheet" href="/resources/css/table.css">
 </head>
@@ -54,7 +51,7 @@
 					<a href="main.jsp">I-Study</a>
 				</div>
 				<ul class="navbar_menu">
-                    <a href="main.do"><li>홈</li></a>
+                    <a href="${cpath}/"><li>홈</li></a>
                     <a href="${cpaht}/lecture.do"><li>강의</li></a>
                     <a href=""><li>스터디</li></a>
                 </ul>
@@ -77,29 +74,26 @@
 	<div style="text-align: left; margin: 0%" class="title"></div>
 <body class="background">
 	<div>
-	    <h1 class="link"><b>Study</b></h1>
+	    <h1 class="link"><b>Naver Search</b></h1>
 	    <div class="searchOut">
 		        <div class="searchOut">
 		            <div class="search">
-		                <input type="text" placeholder="웹검색" name="search_words" class="searchInput" autocomplete="off">
+		                <input type="text" placeholder="웹검색" name="search_words" class="searchInput" autocomplete="off" onkeyup="if(window.event.keyCode==13){javascript:getSearch()}">
 		                <button class="searchBtn" type="submit" name="click" onclick="getSearch()">검색</button>
 		            </div>
 		        </div>
-	        
 	    </div>
 	    <div class="articleBoard">
 	        <table class="article">
 	            <tr>
-	                <th>제목</th>
-	                <th>상세정보</th>
+	                <th>검색결과</th>
 	            </tr>
 	            <tr class="boardList">
 	            </tr>
 	        </table>
 	    </div>
-
     </div>
-	<button class="gobackBtn" onclick="${cpath}/main.do"
+	<button class="gobackBtn" onclick="${cpath}/"
     style="width: 80px; height: 25px; font-size: 15px; display: block; margin: 30px auto;">홈으로</button>
     <div class="foot"></div>
 </body>

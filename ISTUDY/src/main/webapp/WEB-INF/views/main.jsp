@@ -635,6 +635,7 @@ p.MOD_FEATURE_Title {
                 </ul>
                 <ul class="navbar_account">
                 <c:if test="${User == null}">
+                	<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=PvXDJCYLeoyt5YcqpWBV&redirect_uri=http://localhost:8080/naver/login/callback">네이버 로그인</a>
                         <a href="${cpath}/login.do"><li>로그인</li></a>
                         <a href="join.do"><li>회원가입</li></a>
                 </c:if>
