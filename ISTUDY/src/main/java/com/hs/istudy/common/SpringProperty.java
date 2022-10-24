@@ -2,11 +2,11 @@ package com.hs.istudy.common;
 
 import org.springframework.core.env.Environment;
 
-public abstract class AbstractSpringProperty<E extends Enum<E>> {
+public abstract class SpringProperty<E extends Enum<E>> {
 	//
 	protected Environment environment;
 	
-	protected AbstractSpringProperty(Environment environment) {
+	protected SpringProperty(Environment environment) {
 		this.environment = environment;
 	}
 	

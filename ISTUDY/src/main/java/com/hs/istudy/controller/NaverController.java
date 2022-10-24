@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.hs.istudy.common.AppConfig;
+import com.hs.istudy.common.enums.ApplicationConfigCode;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -24,11 +27,17 @@ import com.squareup.okhttp.Response;
 public class NaverController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	/*@GetMapping("/login")
-	public void getAuthorization() {
-		String state = generateRandomString();
+	
+	private AppConfig appConfig; // @Autowired
+	private final String clientSecret;
+	private final String clientId;
+	
+	@Autowired
+	public NaverController(AppConfig appConfig) {
+		this.appConfig = appConfig;
+		this.clientId = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_ID);
+		this.clientSecret = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_SECRET);
 	}
-	*/
 	
 	@GetMapping("/login/callback")
 	public String authNaver(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletRequest request) {
@@ -43,8 +52,8 @@ public class NaverController {
 	@GetMapping("/token")
 	public void getNaverToken(@RequestParam("code") String code) {
 		System.out.println("code 확인: "+code);
-		String url = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=PvXDJCYLeoyt5YcqpWBV&client_secret=Jix6v6N_ji&code="+code;
-		
+		String url = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id="+ clientId +"&client_secret="+clientSecret+"&code="+code;
+		logger.info("client id 확인: {}, client secret 확인: {}", clientId, clientSecret);
 		try {
 		OkHttpClient httpClient = new OkHttpClient();
 		
@@ -61,7 +70,5 @@ public class NaverController {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	
 	}
 }

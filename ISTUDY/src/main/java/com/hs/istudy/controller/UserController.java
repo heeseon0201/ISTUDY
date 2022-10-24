@@ -8,10 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hs.istudy.common.AppConfig;
+import com.hs.istudy.common.enums.ApplicationConfigCode;
 import com.hs.istudy.dto.User;
 import com.hs.istudy.service.UserService;
 
@@ -22,9 +26,16 @@ public class UserController {
 	
 	private UserService service;
 	
+	private AppConfig appConfig; // @Autowired
+	private final String clientSecret;
+	private final String clientId;
+	
 	@Autowired
-	public UserController(UserService service) {
+	public UserController(UserService service, AppConfig appConfig) {
 		this.service = service;
+		this.appConfig = appConfig;
+		this.clientId = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_ID);
+		this.clientSecret = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_SECRET);
 	}
 	
 	@PostMapping("/user")
@@ -47,7 +58,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/")
-	public String main() {
+	public String main(Model model) {
+		String naverAuthUrl = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+clientId+"&redirect_uri=http://localhost:8080/naver/login/callback";
+		
+		model.addAttribute("naverUrl", naverAuthUrl);
+		
 		return "main";
 	}
 	

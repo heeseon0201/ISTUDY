@@ -14,7 +14,7 @@ import com.hs.istudy.common.enums.ApplicationConfigCode;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-public class ApplicationConfig extends AbstractSpringProperty<ApplicationConfigCode> {
+public class ApplicationConfig extends SpringProperty<ApplicationConfigCode> {
 	//
 	@Autowired
 	public ApplicationConfig(Environment environment) {

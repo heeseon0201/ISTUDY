@@ -10,7 +10,7 @@ public class SearchDAOTest {
 	
 	@Test
 	public void testGetSearch() {
-		SearchDAO dao = new SearchDAO();
+		//SearchDAO dao = new SearchDAO();
 		//List<Search> searchList = dao.getSearch();
 		//searchList.get(0).equals(searchList)
 	}
