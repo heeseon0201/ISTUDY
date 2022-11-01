@@ -158,7 +158,7 @@
                    <a href="main.jsp">I-Study</a>
                </div>
                <ul class="navbar_menu">
-                   <li><a href="main.jsp">홈</a></li>
+                   <li><a href="${cpath}/">홈</a></li>
                    <li><a href="${cpaht}/lecture.do">강의</a></li>
                    <li><a href="">스터디</a></li>
                </ul>
@@ -194,7 +194,7 @@
 
         </div>
     </div>
-    <button class="gobackBtn" onclick="${cpath}/main.do"
+    <button class="gobackBtn" onclick="location.href='${cpath}/'"
     style="width: 80px; height: 25px; font-size: 15px; display: block; margin: 30px auto;">홈으로</button>
     <div class="foot"></div>
 </body>

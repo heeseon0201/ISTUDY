@@ -1,6 +1,8 @@
 package com.hs.istudy.controller;
 
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -58,8 +60,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/")
-	public String main(Model model) {
-		String naverAuthUrl = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+clientId+"&redirect_uri=http://localhost:8080/naver/login/callback";
+	public String main(HttpSession session, Model model) {
+		String state = UUID.randomUUID().toString();
+		session.setAttribute("state", state);
+		logger.info("state check: {}", state);
+		String naverAuthUrl = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id="+clientId+"&redirect_uri=http://localhost:8080/naver/login/callback&state="+state;
 		
 		model.addAttribute("naverUrl", naverAuthUrl);
 		

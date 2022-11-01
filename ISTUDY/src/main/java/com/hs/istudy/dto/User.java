@@ -20,5 +20,6 @@ public class User {
 	private String userInterest; //관심사
 	private String userJob; //직업
 	private Date userStart; //가입일자
-	
+	private char userType; //관리자유형
+	private char userStatus; //상태
 }
