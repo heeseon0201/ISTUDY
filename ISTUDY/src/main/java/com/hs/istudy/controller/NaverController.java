@@ -1,6 +1,8 @@
 package com.hs.istudy.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,12 +15,15 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hs.istudy.common.AppConfig;
 import com.hs.istudy.common.enums.ApplicationConfigCode;
+import com.hs.istudy.service.SnsUserService;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -29,12 +34,14 @@ public class NaverController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	private SnsUserService service;
 	private AppConfig appConfig; // @Autowired
 	private final String clientSecret;
 	private final String clientId;
 	
 	@Autowired
-	public NaverController(AppConfig appConfig) {
+	public NaverController(SnsUserService service, AppConfig appConfig) {
+		this.service = service;
 		this.appConfig = appConfig;
 		this.clientId = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_ID);
 		this.clientSecret = this.appConfig.getString(ApplicationConfigCode.NAVER_CLIENT_SECRET);
@@ -42,11 +49,8 @@ public class NaverController {
 	
 	@GetMapping("/login/callback")
 	public String authNaver(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletRequest request) {
-		logger.info("code: {}", code);
-		logger.info("state: {}", state);
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("naverLoginCode", code);
+		logger.info("authNaver code: {}", code);
+		logger.info("authNaver state: {}", state);
 		
 		return "redirect:/naver/token?code="+ code+"&state="+state;
 	}
@@ -61,7 +65,6 @@ public class NaverController {
 		if(!StringUtils.pathEquals(sessionState, state)) {
 			logger.error("getNaverToken state is not match!");
 		}else {
-			System.out.println("code 확인: "+code);
 			String url = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id="+ clientId +"&client_secret="+clientSecret+"&code="+code+"&state="+state;
 			logger.info("client id 확인: {}, client secret 확인: {}", clientId, clientSecret);
 			try {
@@ -95,28 +98,19 @@ public class NaverController {
 		
 }
 	@GetMapping("/profile")
-	public void getNaverProfile(HttpSession session, @RequestParam("accessToken") String accessToken) {
-		try {
-		String url = "https://openapi.naver.com/v1/nid/me";
+	public ModelAndView  getNaverProfile(@RequestParam("accessToken") String accessToken, RedirectAttributes redirectAttributes) {
+		JsonObject jsonObject = service.getNaverProfile(accessToken);
 		
-		OkHttpClient httpClient = new OkHttpClient();
-		
-		Request request = new Request.Builder()
-							.url(url)
-							.addHeader("Authorization", "Bearer ".concat(accessToken))
-							.build();
-		Response response = httpClient.newCall(request).execute();
-		
-		//응답결과값 출력
-		String result = response.body().string();
-		Gson gson = new Gson();
-		JsonObject jsonObject = JsonParser.parseString(result).getAsJsonObject();
-		System.out.println(result);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		//JsonObject를 한꺼번에 redirect하려 했지만 시간상 어려움 발생 우선 각자 값을 쿼리스트링으로 보낸 후 나중에 리팩토링 필요
+		//이름은 전송할 때 깨지는 현상이 일어나서 URL encoding 진행
+		String name = URLEncoder.encode(jsonObject.get("name").getAsString(), StandardCharsets.UTF_8);
+		redirectAttributes.addAttribute("id", jsonObject.get("id").getAsString());
+		redirectAttributes.addAttribute("name", name);
+		redirectAttributes.addAttribute("profile_image", jsonObject.get("profile_image").getAsString());
+		redirectAttributes.addAttribute("email", jsonObject.get("email").getAsString());
+		redirectAttributes.addAttribute("mobile", jsonObject.get("mobile").getAsString());
+
+		return new ModelAndView("redirect:/naver/login");
 		
 	}
 }

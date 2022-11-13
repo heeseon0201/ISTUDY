@@ -32,7 +32,8 @@
     });   
   //강의정보 가져오기 - 오버로딩 구현(매개변수 있을 때 - 페이지네이션 / 없을 때 - 1페이지)
 	function getLecture(){
-	  	if(arguments.length == 0){
+	  let checkPage = arguments.length == 0 //페이지네이션까지 불러와야 하는지 확인하는 변수
+	  	if(checkPage == true){
 	  		lecturePage = 1;
 	  	}else{
 	  		lecturePage = arguments[0];
@@ -49,7 +50,7 @@
 			,success: function(data){ 
 				showTable(data); 
 				//매개변수가 없으면 카운트까지 가져와야 한다.
-				if(arguments.length == 0){
+				if(checkPage == true){
 					getLectureCount(searchWord); 
 				}
 			}

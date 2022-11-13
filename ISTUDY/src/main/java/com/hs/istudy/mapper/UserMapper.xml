@@ -5,13 +5,21 @@
 <mapper namespace="com.hs.istudy.mapper.UserMapper">
 
 	<insert id="addUser" parameterType="com.hs.istudy.dto.User">
-		insert into user_tb(user_id, user_pw, user_name, user_phone, user_interest, user_job) 
-		values(#{userId}, #{userPw}, #{userName}, #{userPhone}, #{userInterest}, #{userJob});
+		insert into user_tb(user_id, user_pw, user_name, user_phone, user_job) 
+		values(#{userId}, #{userPw ,jdbcType=VARCHAR}, #{userName}, #{userPhone}, #{userJob ,jdbcType=VARCHAR});
 	</insert>
 	<select id="getUser" resultType ="com.hs.istudy.dto.User">
 		select * from user_tb where user_id = #{userId} and user_pw = #{userPw}
 	</select>
 	 <select id="getUserName" parameterType="String" resultType="string">
      	select user_name FROM user_tb WHERE user_id = #{user_id}
- </select>
+ 	</select>
+ 	<select id="checkUser" parameterType="String" resultType="boolean">
+     	select
+     	exists
+     	(select 1 from user_tb where user_id = #{id} limit 1)
+ 	</select>
+ 	<select id="getUserById" parameterType="String" resultType="com.hs.istudy.dto.User">
+     	select * FROM user_tb WHERE user_id = #{user_id}
+ 	</select>
 </mapper>

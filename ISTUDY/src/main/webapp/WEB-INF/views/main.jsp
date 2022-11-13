@@ -629,7 +629,7 @@ p.MOD_FEATURE_Title {
                     <a href="main.jsp">I-Study</a>
                 </div>
                 <ul class="navbar_menu">
-                    <a href="main.do"><li>홈</li></a>
+                    <a href="${cpaht}/"><li>홈</li></a>
                     <a href="${cpaht}/lecture.do"><li>강의</li></a>
                     <a href=""><li>스터디</li></a>
                 </ul>
@@ -640,8 +640,8 @@ p.MOD_FEATURE_Title {
                         <a href="join.do"><li>회원가입</li></a>
                 </c:if>
                 <c:if test="${User != null}">
-                        <a href=""><li>${User.userId}의 강의</li></a>
-                        <a href=""><li>${User.userId}의 스터디</li></a>
+                        <a href=""><li>${User.userName}의 강의</li></a>
+                        <a href=""><li>${User.userName}의 스터디</li></a>
                         <a href="${cpaht}/logout.do"><li>로그아웃</li></a>
                 </c:if>
                 </ul>

@@ -31,19 +31,18 @@ public class LectureController {
 	public List<Lecture> getLectureList(@RequestParam("lecturePage") int page,
 										@RequestParam("searchWord") String searchWord) {
 		logger.info("검색어 확인: {}", searchWord);
-			List<Lecture> lectureList = service.getLectureList(page-1, searchWord);
-			logger.info("lecture 출력 Success!");
-			return lectureList;
-		}
+		List<Lecture> lectureList = service.getLectureList(page-1, searchWord);
+		logger.info("lecture 출력 Success!");
+		return lectureList;
+	}
 		
 	@PostMapping("/lecture/count")
 	public int getLectureList(@RequestParam("searchWord") String searchWord) {
-		//logger.info(config.getNaverClientId());
 		logger.info("검색어 확인: {}", searchWord);
-			int lectureCount = service.getLectureCount(searchWord);
-			logger.info("lectureCount 출력 Success!");
-			return lectureCount;
-		}
-		
+		int lectureCount = service.getLectureCount(searchWord);
+		logger.info("lectureCount 출력 Success!");
+		return lectureCount;
+	}
+	
 	}
 

@@ -26,7 +26,6 @@ public class UserMapperTest {
 		user.setUserId(id);
 		user.setUserPw(pw);
 		user.setUserName("ABC");
-		user.setUserInterest("IT");
 		user.setUserJob("무직");
 		user.setUserPhone("00000000000");
 		mapper.addUser(user);
